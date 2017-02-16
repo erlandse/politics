@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Search in public facebook pages</title>
+	<meta name="generator" content="BBEdit 9.6" />
+    <script type="text/javascript" charset="utf-8" src="https://app.uio.no/hf/ft/jquery/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="https://app.uio.no/hf/ft/facebook/search/tools.js"></script>
+    <script type="text/javascript" charset="utf-8" src="index.js"></script>
+    <script type="text/javascript" charset="utf-8" src="elasticClass.js"></script>
+    <script type="text/javascript" charset="utf-8" src="https://app.uio.no/hf/ft/tcal/tcal.js"></script>
+    <link href="https://app.uio.no/hf/ft/wheel/wordwheel.css" type="text/css" rel="stylesheet"/>
+	<link href="uio-app-top-bottom.css" type="text/css" rel="stylesheet" media="screen, print" />
+    <link href="uio-app-print.css" type="text/css" rel="stylesheet" media="print" />
+    
+    <link href="facebook.css" type="text/css" rel="stylesheet"/>
+    <link href="https://app.uio.no/hf/ft/tcal/tcal.css" type="text/css" rel="stylesheet"/>
+	
+</head>
+<body onload='initialize()' onResize= "resize()">
+
+<!-- Page header starts -->
+<div id="app-head-wrapper"> 
+  <div id="line-top">
+    <div id="uiologo" class="english-uiologo">
+      <a href="http://www.uio.no/english/">University of Oslo</a>
+    </div> 
+  </div>
+  <div id="app-head">
+    <div id="app-name"> 
+      <a href='http://www.hf.uio.no/imk/forskning/forskningsomrader/politisk-kommunikasjon/'>Facebook tool for searching in public pages from political actors</a> 
+      <span id="tagline">Searching in uploaded posts from public pages in facebook<br>Looking for more than one word/phrase in text or tag field use semicolon as separator</span>
+    </div>
+</div> 
+<!-- Page header end -->
+
+<br>
+<div id="wordwheel_div"> <ul id= 'ul' class='wordwheel'>
+  </ul> </div>
+
+
+<table class='tableClass'>
+<tr><td>Search in text:</td><td><input  id="freetext" type="text" size='40' autocomplete="off"'/>&nbsp;<input type='button' value='Search' onclick='initSearch()' />&nbsp;<input type='button' value='Reset' onclick='setToZero()' /></td></tr>
+<tr><td>Search in tags:</td><td><input  id="tagText" type="text" size='40' autocomplete="off"'/>&nbsp;<select id='tagSelect' onchange='appendTag()'></select></td></tr>
+<tr><td>Page-type:</td><td><select id='pageType' onchange='initSearch()'></select></td></tr>
+<tr><td>Page-owner:</td><td><select id='pageOwner' onchange='initSearch()'></select></td></tr>
+<tr><td>Status-type:</td><td><select id='statusType' onchange='initSearch()'></select></td></tr>
+<tr><td>From date:</td><td><input type="text" style='background-color:#FFFFFF' size='10' name="date" onchange='initSearch()' id='fromDate' class="tcal" value="" /></td></tr>
+<tr><td>To date:</td><td><input type="text" size='10' style='background-color:#FFFFFF' name="date2" onchange='initSearch()' id='toDate' class="tcal" value="" /></td></tr>
+
+<tr><td>Sorted by:</td>
+<td><select id='sortselect' onchange='initSearch()'>
+<option value=''>Choose</option>
+<option value='{"likes":{"order":"desc"}}'>Likes</option>
+<option value='{"shares":{"order":"desc"}}'>Shares</option>
+<option value='{"comments":{"order":"desc"}}'>Comments</option>
+<option value='{"created":{"order":"desc"}}'>New posts first</option>
+<option value='{"created":{"order":"asc"}}'>Oldest posts first</option>
+</select></td>
+</tr>
+<tr>
+<td>Posts per page:</td>
+<td><select id="paginating" onchange='initSearch()'>
+<option value='10'>10</option>
+<option value='20'>20</option>
+<option value='50'>50</option>
+<option value='100'>100</option>
+<option value='10000'>All(max 10.000)</option>
+</select>&nbsp;&nbsp;<input type="checkbox" name="hideBodyText" id='hideBodyText' onchange='changeBodyTextInResultList()'>Hide body text</td>
+</tr>
+
+</table>
+
+
+
+
+<div id="resultatvisning">
+  <div id="bla"></div>
+<div id='testtable'>
+</div>
+
+</div>
+
+<div id="exportDiv" style='display:none'>
+<table style='margin-left: 10px;'>
+<tr><td>
+<input type='button' value='Return' onclick='backToResultList()'/> Copy tab-separated text
+</td></tr>
+<tr><td>
+<textarea cols='100' rows='40' id='liste' readonly style="background-color:#DDDDDD;"></textarea>
+</td></tr>
+</table>
+</div>
+<br>
+<!-- Page footer starts -->
+<div id="app-footer-wrapper"> 
+  <div id="app-footer">
+    <div id="app-responsible"> 
+      <span class="vrtx-label">Responsible for this service</span> 
+      <span ><a style="color:blue;" target='_blank' href="http://www.usit.uio.no/english/about/organisation/bps/rc/">Department for Research Computing</a></span> 
+      <span>Data Capture and Collections Management Group</span> 
+    </div>
+  </div> 
+</div>
+<!-- Page footer end -->
+
+<div id='test'></div>
+</body>
+</html>

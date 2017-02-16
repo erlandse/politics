@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Export of facebook pages</title>
+	<meta name="generator" content="BBEdit 9.6" />
+    <script type="text/javascript" charset="utf-8" src="fbstuff.js"></script>
+    <script type="text/javascript" charset="utf-8" src="fb.js"></script>
+    <script type="text/javascript" charset="utf-8" src="fbpost.js"></script>
+    <script type="text/javascript" charset="utf-8" src="elasticClass.js"></script>
+    <script type="text/javascript" charset="utf-8" src="https://app.uio.no/hf/ft/jquery/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="https://app.uio.no/hf/ft/facebook/metadata.js"></script>
+    <script type="text/javascript" charset="utf-8" src="https://app.uio.no/hf/ft/facebook/tools.js"></script>
+    <script type="text/javascript" charset="utf-8" src="https://app.uio.no/hf/ft/tcal/tcal.js"></script>
+    <script type="text/javascript" charset="utf-8" src="https://app.uio.no/hf/ft/solr/SolrJsonClass.js"></script>
+    <script type="text/javascript" charset="utf-8" src="https://app.uio.no/hf/ft/facebook/solrdatabase.js"></script>
+
+    <link href="facebook.css" type="text/css" rel="stylesheet"/>
+    <link href="https://app.uio.no/hf/ft/tcal/tcal.css" type="text/css" rel="stylesheet"/>
+	<link href="uio-app-top-bottom.css" type="text/css" rel="stylesheet" media="screen, print" />
+    <link href="uio-app-print.css" type="text/css" rel="stylesheet" media="print" />
+
+</head>
+<body onload='initialize()'>
+<div id="fb-root"></div>
+<!--table class='top'><tr><td style='padding-left:30px;'>facebook</td><td style="text-align:right;padding-right:20px">Export of posts in public pages in facebook</td></tr><table><br-->
+<!-- Page header starts -->
+<div id="app-head-wrapper"> 
+  <div id="line-top">
+    <div id="uiologo" class="english-uiologo">
+      <a href="http://www.uio.no/english/">University of Oslo</a>
+    </div> 
+  </div>
+  <div id="app-head">
+    <div id="app-name"> 
+      <a href='http://www.uio.no'>Facebook tool</a> 
+      <span id="tagline">Export posts from public pages in facebook</span>
+    </div>
+</div> 
+<!-- Page header end -->
+
+<table class='tableClass'>
+<tr><td>Posts pr call:&nbsp;
+<select id='pageSizeSelect'>
+<option value="10">10</option>
+<option value="25">25</option>
+<option value="50">50</option>
+</select>
+<br><br>
+</td></tr>
+<tr><td><input type='button' value='Start batch' onclick='startRunning()'/>&nbsp;Start from: <input type="text" size='5' value="0" id='startFrom'/>
+</td></tr>
+<tr><td>Run single page:&nbsp;&nbsp;<input type="text" size='20' id='singleLoad'/>&nbsp;<input type='button' value='Upload' onclick='runSingle()'/></td></tr>
+<tr><td><input type="checkbox" name="dublets" id='ignoreDublets' value="dublets">&nbsp;&nbsp;Ignore dublets</td></tr>
+</table>
+<!--input type='button' value='login' onclick='testStatus()'/>
+<input type='button' value='logout' onclick='logout()'/-->
+<br><br>
+<table class='tableClass'>
+<tr><td>Name</td><td><div id='metadataName'></div></td></tr>  
+<tr><td>Category</td><td><div id='metadataCategory'></div></td></tr>  
+<tr><td>Description: </td><td><textarea id='metadataDescription' style='background-color:#DDDDDD' readonly rows='4' cols='60'></textarea></td></tr>  
+<tr><td>Number of likes</td><td><div id='metadataLikes'></div></td></tr>  
+<tr><td>'Talking about count'</td><td><div id='metadataTalkingAboutCount'></div></td></tr>  
+</table>
+<br>
+<hr>
+<div id='whenMetadataLoadet'>
+<table class='tableClass'>
+<tr>
+
+<td>Startdate:&nbsp;&nbsp;<input type="text" style='background-color:#FFFFFF' size='10' name="date"  id='fromDate' class="tcal" value="2014-01-01" />
+&nbsp;Enddate:&nbsp;&nbsp;<input type="text" size='10' style='background-color:#FFFFFF' name="date2" id='toDate' class="tcal" value="" /></td>
+<td>Now loading posts:<input type='text'id='loading' size='16' style='background-color:#DDDDDD' readonly/><br></td>
+</tr>
+</table>
+<br>
+</div>
+<div id='whenPostsLoadet'>
+
+<hr>
+<table class='tableClass'>
+<tr>
+ <td>Loading:&nbsp;<input type='text'id='loadSheet' style='background-color:#DDDDDD' readonly size='12'/>
+ </td>
+ </tr>
+<tr><td><textarea cols='100' rows='20' id='liste2' style='background-color:#DDDDDD' readonly></textarea></td></tr>
+</table>
+</div>
+<div id='uploadDiv' style='margin-left: 25px;display:none'>
+Export to base&nbsp;&nbsp;<input type='button' value='upload' onclick='uploadToBase()'/>
+</div>
+
+<!-- Page footer starts -->
+<div id="app-footer-wrapper"> 
+  <div id="app-footer">
+    <div id="app-responsible"> 
+      <span class="vrtx-label">Responsible for this service</span> 
+      <span ><a style="color:blue;" target='_blank' href="http://www.usit.uio.no/english/about/organisation/bps/rc/">Department for Research Computing</a></span> 
+      <span>Data Capture and Collections Management Group</span> 
+    </div>
+  </div> 
+</div>
+<!-- Page footer end -->
+
+
+<!--style='display:none-->
+<textarea cols='100' rows='40' id='felt' style='visibility:hidden'></textarea>
+<br>
+</body>
+</html>
